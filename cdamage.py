@@ -4,9 +4,10 @@ from argparse import ArgumentParser
 def calculate_damage(lvl, attack, defense, base, stab, type_):
     min_damage = int(((2*lvl+10)/250 * attack/defense * base + 2) * stab * type_ * 0.85)
     max_damage = int(((2*lvl+10)/250 * attack/defense * base + 2) * stab * type_ * 1)
-    crit = int(((2*lvl+10)/250 * attack/defense * base + 2) * stab * type_ * 0.85 * 1.5)
+    crit_min = int(((2*lvl+10)/250 * attack/defense * base + 2) * stab * type_ * 0.85 * 1.5)
+    crit_max = int(((2*lvl+10)/250 * attack/defense * base + 2) * stab * type_ * 1 * 1.5)
     average = (min_damage + max_damage)/2
-    return min_damage, max_damage, crit, average
+    return min_damage, max_damage, crit_min, crit_max, average
 
 
 def main():
@@ -25,11 +26,9 @@ def main():
     base = int(eval(args.base))
     stab = float(eval(args.stab))
     type_multiplier = float(eval(args.typem))
-    min_damage, max_damage, crit, average = calculate_damage(lvl, attack, defense, base, stab, type_multiplier)
-    print(f"Minimal damage:\t  {min_damage}")
-    print(f"Max damage:\t  {max_damage}")
-    print(f"Average damage:\t  {average}")
-    print(f"Crit damage:\t  {crit}")
+    min_damage, max_damage, crit_min, crit_max, average = calculate_damage(lvl, attack, defense, base, stab, type_multiplier)
+    #print(f"{lvl=} {attack=} {defense=} {base=} {stab=} {type_multiplier=}")
+    print(f"Damage:\t{min_damage}-{max_damage} Avrg: {average} Crit: {crit_min}-{crit_max}")
 
 
 if __name__ == "__main__":
