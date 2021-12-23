@@ -28,7 +28,7 @@ def main():
     type_multiplier = float(eval(args.typem))
     min_damage, max_damage, crit_min, crit_max, average = calculate_damage(lvl, attack, defense, base, stab, type_multiplier)
     #print(f"{lvl=} {attack=} {defense=} {base=} {stab=} {type_multiplier=}")
-    print(f"Damage:\t{min_damage}-{max_damage} Avrg: {average} Crit: {crit_min}-{crit_max}")
+    print(f"Damage: {min_damage}-{max_damage} Avrg: {average} Crit: {crit_min}-{crit_max}")
 
 
 if __name__ == "__main__":
